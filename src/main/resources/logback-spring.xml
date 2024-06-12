@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProfile name="!prod">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] %green([%thread]) %highlight(%-5level) %boldWhite([%C.%M:%yellow(%L)]) - %msg%n
+                </pattern>
+            </encoder>
+        </appender>
+        <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="CONSOLE"/>
+            <includeCallerData>true</includeCallerData>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="ASYNC"/>
+        </root>
+
+        <logger name="com.spring.jpa" level="DEBUG" additivity="false"/>
+
+        <!--SQL 보이게 하기-->
+        <logger name="org.hibernate.SQL" level="DEBUG"/>
+
+        <!--SQL에 들어가는 파라미터 보이게 하기-->
+        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="DEBUG"/>
+
+        <!--DB 커넥션 표시(선택)-->
+        <!--  <logger name="com.zaxxer.hikari" level="DEBUG"/>-->
+    </springProfile>
+</configuration>

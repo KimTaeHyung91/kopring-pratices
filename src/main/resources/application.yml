@@ -1,0 +1,23 @@
+server:
+  port: 6002
+  shutdown: graceful
+
+spring:
+  application:
+    name: task
+
+
+  datasource:
+    hikari:
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://localhost:15432/my_db
+      username: my_postgresql
+      password: my_postgresql
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+
+integration:
+  store:
+    base-url: https://fakestoreapi.com/
